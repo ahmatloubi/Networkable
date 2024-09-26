@@ -12,11 +12,24 @@ public enum RequestType {
     case body, queryString
 }
 
+public enum HttpMethod {
+    case post, get
+    
+    public var httpMethod: HTTPMethod {
+        switch self {
+        case .post:
+            return .post
+        case .get:
+            return .get
+        }
+    }
+}
+
 public protocol Request {
     associatedtype RequestInput: Encodable
     associatedtype RequestOutput: Decodable
     var type: RequestType { get }
-    var method: HTTPMethod { get }
+    var method: HttpMethod { get }
     var headers: HTTPHeaders? { get }
     var parameter: RequestInput? { get }
     var url: URL { get }

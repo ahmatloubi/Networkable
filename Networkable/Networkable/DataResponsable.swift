@@ -15,7 +15,7 @@ public protocol DataResponsable {
 
 public extension DataResponsable {
     func response<Output>(dataResponse: DataResponse<Output, AFError>)
-    async throws -> Output where Output: Decodable {
+    throws -> Output where Output: Decodable {
         switch dataResponse.result {
         case .success(let value):
             return value
